@@ -89,7 +89,7 @@ class StringAndArraysTest {
             }else{
                 if(count!=0){
                     str = str.replaceRange(ch-count,ch,"$count%20")
-                    count = 0;
+                    count = 0
                 }
             }
         }
@@ -99,7 +99,42 @@ class StringAndArraysTest {
     }
 
 
+    /**
+     * Given two strings, write a function to check if they are one edit (or zero edits) away
+     * you can perform these operations: insert a character,remove a character, or replace a character
+     */
+    @Test
+    fun test_oneAway(){
 
+        var actualStr = "pale"
+        val expectedStr  = "pie"
+
+        var count = 0
+
+        for (i in 0 .. expectedStr.length.minus(1)){
+            if(actualStr[i]!=expectedStr[i]){
+                // if missing char is available in actual string
+                if(actualStr.contains(expectedStr[i])){
+                    val index = actualStr.indexOf(expectedStr[i])
+                    actualStr = actualStr.replaceRange(i,i+1,actualStr[index].toString())
+                    count++
+                }else{
+                    actualStr = actualStr.replaceRange(i,i+1,expectedStr[i].toString())
+                    count++
+                }
+            }
+        }
+
+        // remove extra char`s
+        if(actualStr.length > expectedStr.length){
+            actualStr = actualStr.removeRange(expectedStr.length,actualStr.length)
+            count++
+        }
+
+        assertEquals(expectedStr,actualStr)
+        assertFalse(count<=1)
+
+    }
 
 
 
