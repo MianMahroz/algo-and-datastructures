@@ -2,6 +2,7 @@ import org.junit.jupiter.api.DisplayName
 import java.util.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class StringAndArraysTest {
@@ -12,24 +13,28 @@ class StringAndArraysTest {
     fun test_is_unique(){
 
         val str = "Maahroz"
-
+        var isUnique = true
         val frequencyMap = mutableMapOf<Char,Int>()
 
         for (ch in str){
 
             if(frequencyMap.containsKey(ch)){
                 frequencyMap[ch] = frequencyMap[ch]?: 1
+                isUnique = false
+                break
             }else{
                 frequencyMap[ch] = 1
             }
-
         }
 
-        val totalFrequency = frequencyMap.values.sum()
-        val uniqueCharSet = hashSetOf<Char>()
-        uniqueCharSet.addAll(str.toList())
+        assertFalse(isUnique)
 
-        assertEquals(uniqueCharSet.size,totalFrequency)
+//        val totalFrequency = frequencyMap.values.sum()
+//        val uniqueCharSet = hashSetOf<Char>()
+//        uniqueCharSet.addAll(str.toList())
+//        assertEquals(uniqueCharSet.size,totalFrequency)
+
+
 
     }
 
@@ -64,13 +69,34 @@ class StringAndArraysTest {
         }
 
         assertTrue(match)
-
-
-
-
-
     }
 
+
+    /**
+     * Replace all spaces in a string with '%20'
+     * and attach a count as well of how many spaces are there i.e 4 and 1 in given string
+     */
+    @Test
+    fun test_urlify(){
+
+        var str = "Mr    3ohn Smith"
+        val expectedResult = "Mr4%203ohn1%20Smith"
+
+        var count = 0
+        for (ch in str.indices){
+            if(str[ch].isWhitespace()){
+                count++
+            }else{
+                if(count!=0){
+                    str = str.replaceRange(ch-count,ch,"$count%20")
+                    count = 0;
+                }
+            }
+        }
+
+        assertEquals(expectedResult,str)
+
+    }
 
 
 
