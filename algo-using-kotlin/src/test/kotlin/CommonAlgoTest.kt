@@ -2,6 +2,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class CommonAlgoTest {
 
@@ -108,6 +109,27 @@ class CommonAlgoTest {
         assertEquals("2a1b5c3a",builder.toString())
 
     }
+
+
+    /**
+     * e.g., "waterbottle" is a rotation of 'erbottlewat"
+     */
+    @Test
+    fun test_string_rotation(){
+
+        val s1 = "waterbottle"
+        val s2 = "erbottlewat"
+
+        var isRotation = false
+
+        if((s1.length==s2.length) && (s1+s1).indexOf(s2)!=-1) {
+            isRotation = true
+        }
+
+        assertTrue(isRotation)
+
+    }
+
 
 
 
