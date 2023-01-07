@@ -88,6 +88,35 @@ class CommonAlgoTest {
 
     }
 
+    @Test
+    fun test_string_compression(){
+
+        val str =  "aabcccccaaa"
+        val rsStr = StringBuilder()
+
+        var count = 0
+        var prev = ""
+        for(ind in str.indices){
+
+            if(str[ind].toString()==prev || prev.isBlank()){
+                count++
+
+                // for last case
+                if(ind == str.length-1){
+                    rsStr.append(count,prev)
+                }
+            }else{
+                rsStr.append(count,prev)
+                count = 1  // new char found , that why count = 1
+            }
+
+            prev = str[ind].toString()
+        }
+
+        assertEquals("2a1b5c3a",rsStr.toString())
+
+    }
+
 
 
 
