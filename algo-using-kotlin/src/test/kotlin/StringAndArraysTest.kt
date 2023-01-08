@@ -136,6 +136,93 @@ class StringAndArraysTest {
 
     }
 
+    @org.junit.jupiter.api.Test
+    fun test_string_compression(){
+
+        val str =  "aabcccccaaa"
+        val builder = StringBuilder()
+
+        var count = 0
+        for(ind in str.indices){
+
+            count ++
+
+            if(ind==str.length-1 || str[ind].toString()!=str[ind+1].toString()) {
+                builder.append(count,str[ind])
+                count=0
+            }
+        }
+
+        assertEquals("2a1b5c3a",builder.toString())
+
+    }
+
+
+    /**
+     * e.g., "waterbottle" is a rotation of 'erbottlewat"
+     */
+    @org.junit.jupiter.api.Test
+    fun test_string_rotation(){
+
+        val s1 = "waterbottle"
+        val s2 = "erbottlewat"
+
+        var isRotation = false
+
+        if((s1.length==s2.length) && (s1+s1).indexOf(s2)!=-1) {
+            isRotation = true
+        }
+
+        assertTrue(isRotation)
+
+    }
+
+
+    /**
+     *   {1, 2, 3},
+     *   {4, 5, 6},
+     *   {7, 8, 9}
+     *   Steps:
+     *   transpose: rows became columns
+     *   reverse each row
+     */
+
+    @org.junit.jupiter.api.Test
+    fun test_matrixRotation(){
+        val matrix = arrayOf(
+            intArrayOf(1, 2, 3),
+            intArrayOf(4, 5, 6),
+            intArrayOf(7, 8, 9)
+        )
+
+        val row = matrix.size
+
+        // transpose
+        for(i in 0 until row){
+            for (j in i until  row){
+                val temp = matrix[i][j]
+                matrix[i][j] = matrix[j][i]
+                matrix[j][i] = temp
+            }
+        }
+
+
+        // reserve each row
+        for (i in 0 until row){
+            for (j in 0 until 1){  // we only have to swap first with last element of each row to reverse row.
+
+                val temp = matrix[i][j]    // row first element
+                matrix[i][j] = matrix[i][row-1]  // row first element <- row last element  i.e row-1 buz index starts from zero
+                matrix[i][row-1] = temp          // row last element <- row first element
+
+            }
+        }
+
+
+        assertTrue(matrix[0][0]==7)
+
+
+    }
 
 
 

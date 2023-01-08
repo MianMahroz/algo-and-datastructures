@@ -2,7 +2,6 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 class CommonAlgoTest {
 
@@ -88,48 +87,6 @@ class CommonAlgoTest {
         assertContentEquals(mutableListOf(1,2,3,4,5), numberList)
 
     }
-
-    @Test
-    fun test_string_compression(){
-
-        val str =  "aabcccccaaa"
-        val builder = StringBuilder()
-
-        var count = 0
-        for(ind in str.indices){
-
-            count ++
-
-            if(ind==str.length-1 || str[ind].toString()!=str[ind+1].toString()) {
-                builder.append(count,str[ind])
-                count=0
-            }
-        }
-
-        assertEquals("2a1b5c3a",builder.toString())
-
-    }
-
-
-    /**
-     * e.g., "waterbottle" is a rotation of 'erbottlewat"
-     */
-    @Test
-    fun test_string_rotation(){
-
-        val s1 = "waterbottle"
-        val s2 = "erbottlewat"
-
-        var isRotation = false
-
-        if((s1.length==s2.length) && (s1+s1).indexOf(s2)!=-1) {
-            isRotation = true
-        }
-
-        assertTrue(isRotation)
-
-    }
-
 
 
 
