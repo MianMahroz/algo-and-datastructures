@@ -131,4 +131,27 @@ class LinkedListTest {
         assertEquals(2,dataStore[i-k])
     }
 
+
+    @Test
+    fun test_delete_middle_node(){
+        val node  = Node(Node(Node(null,6),4),2)
+
+        var slowPtr: Node? = node
+        var fastPtr: Node? = node
+        var prev:Node? = null
+
+        while(fastPtr?.next != null){
+            prev = slowPtr
+            slowPtr = slowPtr?.next
+            fastPtr = fastPtr.next?.next
+        }
+
+        prev?.next = slowPtr?.next
+
+        assertEquals(6,prev?.next?.data)
+
+    }
+
+
+
 }
