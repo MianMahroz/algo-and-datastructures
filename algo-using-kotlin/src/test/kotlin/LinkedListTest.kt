@@ -98,7 +98,37 @@ class LinkedListTest {
 
         assertEquals(node.next?.next?.data,6)
 
+    }
 
+    /**
+     * we have defined k such that passing in k = 1 would return the last element, k
+     * = 2 would return to the second to last element, and so on. It is equally acceptable to define k such that k
+     * = 0 would return the lastelement
+     */
+    @Test
+    fun test_find_kth_toTheLastElement(){
+
+        val node  = Node(Node(Node(null,6),4),2)
+        val dataStore = mutableListOf<Int>()
+        val k = 3
+
+        var current:Node? = node
+        var i = 0
+
+        while (current?.next != null){
+                dataStore.add(current.data)
+                current = current.next!!
+                i++
+
+            // for last node
+            if(current.next==null){
+                dataStore.add(current.data)
+                i++
+            }
+        }
+
+
+        assertEquals(2,dataStore[i-k])
     }
 
 }
