@@ -300,15 +300,9 @@ class CommonAlgoTest {
 
         val numberList = arrayOf(2, 4, 1, 8, 6, 3, 7)
 
-        var max = Integer.MIN_VALUE
-        for (i in numberList.indices) {
-            if (numberList[i] > max) {
-                max = numberList[i]
-            }
-        }
-
+        val num = numberList.size+1 // assuming that numbers are natural
         // calculating sum using formula n(n+1)/2
-        var sum = max*(max+1)/2
+        var sum = num*(num+1)/2
         println(sum)
 
         var missingNumber = 0
