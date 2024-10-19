@@ -317,16 +317,65 @@ class CommonAlgoTest {
 
 
 
+    @Test
+    fun  test_if_given_string_is_palindrome(){
 
+        val originalStr = "madam"
+        val str = originalStr.toCharArray()
 
+        var start = 0
+        var end = str.size-1
 
+        while (start < end){
 
+            val temp = str[start]
+            str[start] = str[end]
+            str[end] = temp
 
+            start++
+            end--
+        }
 
-
-
-
-
+        assertEquals(originalStr,str.concatToString())
 
 
     }
+
+
+    @Test
+    fun  test_if_given_string_is_palindrome_optimized(){
+
+
+        val str = "madam".toCharArray()
+
+        var start = 0
+        var end = str.size-1
+        var isPalindrome = true;
+        while (start < end){
+
+            if(str[start] != str[end]){  // for a string to be a palindrone, its first char should be equal to last so on
+                isPalindrome = false;
+                break;
+            }
+            start++
+            end--
+        }
+
+        assertEquals(true,isPalindrome)
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
